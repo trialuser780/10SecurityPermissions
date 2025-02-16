@@ -51,7 +51,7 @@ jobs:
           path: dist
   deploy:
     permissions:
-      id-token: write
+      id-token: write #id-token has to be set to write access
       contents: read
     needs: build
     runs-on: ubuntu-latest
@@ -65,8 +65,8 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      - name: Get AWS permissions
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Get AWS permissions #incseted od secrets this provided
+        uses: aws-actions/configure-aws-credentials@v1 
         with:
           role-to-assume: arn:aws:iam::450226343468:role/GitHubDemo1
           aws-region: us-east-1
